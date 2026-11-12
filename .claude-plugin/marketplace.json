@@ -1,0 +1,20 @@
+{
+  "name": "adspirer-social-ads",
+  "owner": {
+    "name": "Adspirer",
+    "email": "support@adspirer.com"
+  },
+  "metadata": {
+    "description": "Run Meta Ads (Facebook and Instagram) and TikTok Ads from Claude through Adspirer's hosted Social Ads MCP server. Report on spend, ROAS, CPA and CTR, catch creative fatigue, analyze audiences and placements, find wasted spend, research competitor ads, read lead-form submissions, and build image, video, carousel and Advantage+ catalog campaigns on Meta and video campaigns on TikTok. New campaigns are created paused, and every spend change needs your approval."
+  },
+  "plugins": [
+    {
+      "name": "adspirer-social-ads",
+      "source": "./",
+      "description": "Run Meta Ads (Facebook and Instagram) and TikTok Ads from Claude through Adspirer's hosted Social Ads MCP server. Report on spend, ROAS, CPA and CTR, catch creative fatigue, analyze audiences and placements, find wasted spend, research competitor ads, read lead-form submissions, and build image, video, carousel and Advantage+ catalog campaigns on Meta and video campaigns on TikTok. New campaigns are created paused, and every spend change needs your approval.",
+      "author": {
+        "name": "Adspirer"
+      }
+    }
+  ]
+}

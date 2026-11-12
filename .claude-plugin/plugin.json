@@ -1,0 +1,40 @@
+{
+  "name": "adspirer-social-ads",
+  "displayName": "Adspirer Social Ads",
+  "description": "Run Meta Ads (Facebook and Instagram) and TikTok Ads from Claude through Adspirer's hosted Social Ads MCP server. Report on spend, ROAS, CPA and CTR, catch creative fatigue, analyze audiences and placements, find wasted spend, research competitor ads, read lead-form submissions, and build image, video, carousel and Advantage+ catalog campaigns on Meta and video campaigns on TikTok. New campaigns are created paused, and every spend change needs your approval.",
+  "author": {
+    "name": "Adspirer",
+    "email": "support@adspirer.com",
+    "url": "https://www.adspirer.com"
+  },
+  "homepage": "https://www.adspirer.com",
+  "documentationUrl": "https://www.adspirer.com/docs/ai-clients/claude-code",
+  "repository": "https://github.com/Adspirer/adspirer-social-ads-claude-plugin",
+  "license": "MIT",
+  "icon": "assets/icon.png",
+  "privacyPolicyUrl": "https://www.adspirer.com/privacy",
+  "termsOfServiceUrl": "https://www.adspirer.com/terms",
+  "keywords": [
+    "adspirer",
+    "advertising",
+    "paid-social",
+    "social-media-ads",
+    "meta-ads",
+    "facebook-ads",
+    "instagram-ads",
+    "tiktok-ads",
+    "advantage-plus",
+    "catalog-ads",
+    "dynamic-product-ads",
+    "lead-ads",
+    "creative-fatigue",
+    "ad-creative",
+    "audience-targeting",
+    "competitor-ads",
+    "wasted-spend",
+    "roas",
+    "cpa",
+    "ctr",
+    "mcp"
+  ]
+}

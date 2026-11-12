@@ -1,0 +1,59 @@
+name: Validate plugin
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Install Claude Code CLI
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Validate plugin and marketplace manifests
+        run: claude plugin validate .
+
+      # Versions resolve by commit SHA. A "version" field silently pins installs until bumped.
+      - name: Enforce SHA-based versioning (no version field)
+        run: |
+          for f in .claude-plugin/plugin.json .claude-plugin/marketplace.json; do
+            if ! jq -e '[.. | objects | select(has("version"))] | length == 0' "$f" >/dev/null; then
+              echo "::error file=$f::contains a \"version\" field; this plugin versions by commit SHA"
+              exit 1
+            fi
+          done
+
+      - name: Require listing URLs
+        run: |
+          for k in description homepage repository license icon privacyPolicyUrl termsOfServiceUrl documentationUrl; do
+            jq -e --arg k "$k" '.[$k] | type == "string" and length > 0' .claude-plugin/plugin.json >/dev/null \
+              || { echo "::error file=.claude-plugin/plugin.json::missing $k"; exit 1; }
+          done
+          test -f "$(jq -r .icon .claude-plugin/plugin.json)" || { echo "::error::icon file missing"; exit 1; }
+
+      - name: Validate YAML frontmatter in every Markdown file
+        run: |
+          npm install --no-save js-yaml@4
+          node -e '
+            const fs = require("fs"), path = require("path"), yaml = require("js-yaml");
+            let bad = 0;
+            const walk = d => fs.readdirSync(d, { withFileTypes: true }).forEach(e => {
+              const p = path.join(d, e.name);
+              if (e.isDirectory()) { if (!["node_modules", ".git"].includes(e.name)) walk(p); return; }
+              if (!p.endsWith(".md")) return;
+              const m = fs.readFileSync(p, "utf8").match(/^---\n([\s\S]*?)\n---/);
+              if (!m) return;
+              try { yaml.load(m[1]); } catch (err) { bad++; console.log(`::error file=${p}::${err.message}`); }
+            });
+            walk(".");
+            process.exit(bad ? 1 : 0);
+          '
