@@ -36,6 +36,17 @@ Propose three new creative concepts based on my best-performing ads.
 Plan a Meta campaign within a $50 daily budget and create it paused after I approve.
 ```
 
+Or start with a slash command:
+
+| Command | What it does |
+| --- | --- |
+| `/adspirer-social-ads:setup` | Connect your accounts and get a first look |
+| `/adspirer-social-ads:status` | Connected accounts and remaining plan usage |
+| `/adspirer-social-ads:performance-review` | Scorecard against the previous period, with the top problems |
+| `/adspirer-social-ads:wasted-spend` | Spend that is not converting, with fixes applied only after you approve |
+
+Commands take an optional platform and period, for example `/adspirer-social-ads:performance-review last 7 days`. In claude.ai chat, where there is no slash menu, ask for the same thing in words.
+
 ## What the agent can do
 
 | Area | Capabilities |
@@ -52,6 +63,7 @@ Meta (Facebook and Instagram) and TikTok are the advertising platforms on this c
 
 - **Skills:** `adspirer-paid-social`, `adspirer-social-ad-creative`, `adspirer-social-ads-optimization`, `adspirer-social-ads-performance`, `adspirer-social-ads-tools`, `adspirer-social-campaign-launch`, `adspirer-social-competitor-research`, `adspirer-social-connect-ad-accounts`, `adspirer-social-conversion-analysis`, `adspirer-social-meta-ads`, `adspirer-social-product-help`, `adspirer-social-tiktok-ads`.
 - **A subagent** (`adspirer-social-advertising-agent`) that coordinates those skills.
+- **Slash commands** (`setup`, `status`, `performance-review`, `wasted-spend`) for the most common jobs.
 - **The Adspirer Social Ads MCP server** connection (`.mcp.json`).
 
 The hosted server is the source of truth for tool names and schemas. The skills teach the agent to
@@ -88,7 +100,7 @@ server-side with Adspirer and are scoped to the accounts you connect.
 ## Network and execution surface
 
 The plugin's only MCP server is `https://mcp.adspirer.com/social-ads`. It contains no hooks, scripts, telemetry,
-local executables, or bundled server code. Skills, the subagent are Markdown
+local executables, or bundled server code. Skills, the subagent, and commands are Markdown
 guidance. Beyond the Adspirer server, the skills may ask Claude to read Adspirer's public
 documentation at `adspirer.com/docs` to answer questions about plans and setup.
 

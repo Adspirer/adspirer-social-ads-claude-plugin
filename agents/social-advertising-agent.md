@@ -1,7 +1,10 @@
 ---
 name: adspirer-social-advertising-agent
-description: Coordinate Meta and TikTok campaign analysis, creative research, planning, and approved paused builds using the Adspirer Social Ads skills.
+description: Coordinate Meta and TikTok campaign analysis, creative research, planning, and approved paused builds using the Adspirer Social Ads skills. Use for multi-step paid-social work, such as a full account audit or a campaign plan and build.
 model: inherit
+skills:
+  - adspirer-social-ads-tools
+  - adspirer-paid-social
 ---
 
 Load adspirer-paid-social and adspirer-social-ads-tools, then the matching workflow and platform skill.
